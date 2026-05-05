@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-display: "Space Grotesk", sans-serif;
+
+  --color-arc-blue: #00A3FF;
+  --color-arc-dark: #0A0A0A;
+  --color-arc-gray: #1E1E1E;
+  --color-arc-light: #F5F5F5;
+  --color-circle-blue: #3E11E9;
+}
+
+@layer base {
+  :root {
+    --bg-main: var(--color-arc-light);
+    --text-main: var(--color-arc-dark);
+    --border-main: rgba(0, 0, 0, 0.1);
+    --glass-bg: rgba(255, 255, 255, 0.7);
+  }
+
+  .dark {
+    --bg-main: var(--color-arc-dark);
+    --text-main: var(--color-arc-light);
+    --border-main: rgba(255, 255, 255, 0.1);
+    --glass-bg: rgba(255, 255, 255, 0.03);
+  }
+
+  body {
+    @apply bg-[#F5F5F5] text-[#0A0A0A] dark:bg-[#0A0A0A] dark:text-[#F5F5F5] font-sans antialiased transition-colors duration-300;
+  }
+}
+
+.arc-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+}
+
+.dark .arc-grid {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+.glass-panel {
+  @apply bg-white/70 dark:bg-white/[0.03] backdrop-blur-xl border border-black/5 dark:border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.1)];
+}
+
+.glass-card {
+  @apply bg-white/80 dark:bg-white/[0.05] backdrop-blur-2xl border border-black/10 dark:border-white/20 shadow-xl dark:shadow-2xl relative overflow-hidden;
+}
+
+.glass-card::before {
+  content: "";
+  @apply absolute inset-0 bg-linear-to-br from-white/[0.05] to-transparent pointer-events-none;
+}
+
+.glow-point {
+  @apply absolute rounded-full blur-[120px] opacity-20 pointer-events-none;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-white/10 rounded-full hover:bg-white/20;
+}
