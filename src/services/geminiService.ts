@@ -12,7 +12,7 @@ export async function sendMessage(
 ) {
   try {
     const response = await ai.models.generateContent({
-      model: "gemini-3-flash-preview",
+      model: "gemini-1.5-flash-8b",
       contents: [
         ...history.map(item => ({ role: item.role, parts: item.parts })),
         { role: "user", parts: [{ text: message }] },
